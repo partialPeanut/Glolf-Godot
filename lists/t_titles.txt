@@ -1,0 +1,8 @@
+%s Open
+%s Cup
+%s Challenge
+%s Invitational
+%s Tour
+%s Tournament
+The Player's %s
+The Hole %s
