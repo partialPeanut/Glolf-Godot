@@ -2,12 +2,7 @@ extends Node
 
 @export var player_scene: PackedScene
 
-@export var num_initial_players = 96
 var all_players = []
-
-func _ready():
-	for n in range(all_players.size(), num_initial_players):
-		create_new_player()
 
 func new_id():
 	var id = randi()

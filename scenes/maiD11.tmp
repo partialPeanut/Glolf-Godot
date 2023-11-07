@@ -1,0 +1,64 @@
+[gd_scene load_steps=14 format=3 uid="uid://cvqqocb22mk57"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_ddl3x"]
+[ext_resource type="Script" path="res://scripts/league.gd" id="2_niq30"]
+[ext_resource type="PackedScene" uid="uid://bkcjn2tbwdr4x" path="res://scenes/tourney.tscn" id="3_rqsqn"]
+[ext_resource type="Script" path="res://scripts/roster.gd" id="4_fastn"]
+[ext_resource type="PackedScene" uid="uid://dcso0bkbjegca" path="res://scenes/player.tscn" id="5_dx6sa"]
+[ext_resource type="Script" path="res://scripts/environment.gd" id="6_o1w2o"]
+[ext_resource type="PackedScene" uid="uid://qtdnkidv8gx2" path="res://scenes/course_theme.tscn" id="7_ch1tn"]
+[ext_resource type="Script" path="res://scripts/onceler.gd" id="8_ri3nq"]
+[ext_resource type="Script" path="res://scripts/global_events.gd" id="9_1bvn0"]
+[ext_resource type="Script" path="res://scripts/events/event_start_create_players.gd" id="10_53hkq"]
+[ext_resource type="Script" path="res://scripts/local_events.gd" id="10_svquh"]
+[ext_resource type="Script" path="res://scripts/events/event_create_player.gd" id="11_pa0fd"]
+[ext_resource type="Script" path="res://scripts/events/event_tourney_start.gd" id="12_n53fw"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ddl3x")
+
+[node name="League" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_niq30")
+tourney_scene = ExtResource("3_rqsqn")
+
+[node name="Roster" type="Node" parent="League"]
+unique_name_in_owner = true
+script = ExtResource("4_fastn")
+player_scene = ExtResource("5_dx6sa")
+
+[node name="Environment" type="Node" parent="League"]
+unique_name_in_owner = true
+script = ExtResource("6_o1w2o")
+
+[node name="Bland Bland Land" parent="League/Environment" instance=ExtResource("7_ch1tn")]
+
+[node name="Wet \'n\' Wild World" parent="League/Environment" instance=ExtResource("7_ch1tn")]
+quench = 150
+name_tags = ["WET"]
+
+[node name="Onceler" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_ri3nq")
+
+[node name="Global Events" type="Node" parent="Onceler"]
+script = ExtResource("9_1bvn0")
+
+[node name="Start Create Players" type="Node" parent="Onceler/Global Events"]
+script = ExtResource("10_53hkq")
+
+[node name="Create Player" type="Node" parent="Onceler/Global Events"]
+script = ExtResource("11_pa0fd")
+
+[node name="Tourney Start" type="Node" parent="Onceler/Global Events"]
+script = ExtResource("12_n53fw")
+
+[node name="Local Events" type="Node" parent="Onceler"]
+script = ExtResource("10_svquh")
+
+[node name="Event Timer" type="Timer" parent="Onceler"]
+wait_time = 2.0
+
+[node name="Event Queue" type="Node" parent="Onceler"]
+
+[connection signal="timeout" from="Onceler/Event Timer" to="Onceler" method="_on_event_timer_timeout"]

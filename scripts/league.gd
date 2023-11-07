@@ -15,6 +15,7 @@ func new_tourney():
 	add_child(tourney)
 	
 	tourney.init_new(choose_players_for_tourney())
+	return tourney
 
 func choose_players_for_tourney():
 	return $Roster.random_players_for_tourney(players_per_tourney)

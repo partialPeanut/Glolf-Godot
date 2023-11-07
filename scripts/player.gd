@@ -25,25 +25,16 @@ extends Node
 func init_new(_id):
 	id = _id
 	
-	var fn_file = FileAccess.open("res://lists/p_namesfirst.txt", FileAccess.READ)
-	var fn_array = Array(fn_file.get_as_text().split("\n"))
-	first_name = fn_array.pick_random().strip_escapes()
-	
-	var ln_file = FileAccess.open("res://lists/p_nameslast.txt", FileAccess.READ)
-	var ln_array = Array(ln_file.get_as_text().split("\n"))
-	last_name = ln_array.pick_random().strip_escapes()
-	
+	first_name = Util.random_line_from_file("res://lists/p_namesfirst.txt")
+	last_name = Util.random_line_from_file("res://lists/p_nameslast.txt")
 	suffixes = []
-	
-	var g_file = FileAccess.open("res://lists/p_genders.txt", FileAccess.READ)
-	var g_array = Array(g_file.get_as_text().split("\n"))
-	gender = g_array.pick_random().strip_escapes()
+	gender = Util.random_line_from_file("res://lists/p_genders.txt")
 	
 	var tax_bracket = randi() % 100
 	net_worth = randi_range(-60000, 60000) if tax_bracket < 70 else (randi_range(40000, 300000) if tax_bracket < 99 else randi_range(300000, 600000))
 	blahaj_owned = randf_range(-20, 100) if randi() % 666 != 0 else 999999999.999999999
 		
-	mortality = "ALIVE" if randf() < 0.9 else "DEAD"
+	mortality = "ALIVE" if randi() % 100 != 0 else "DEAD"
 	
 	competence = randfn(6,2)
 	smartassery = randfn(6,2)

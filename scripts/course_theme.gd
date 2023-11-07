@@ -15,15 +15,8 @@ extends Node
 @export var name_tags: Array
 
 func generate_course_name():
-	var ca_file = FileAccess.open("res://lists/c_adjectives.txt", FileAccess.READ)
-	var ca_array = Array(ca_file.get_as_text().split("\n"))
-	ca_array = ca_array.filter(func(line): return "BASE" in line || name_tags.any(func(tag): return tag in line))
-	var adjective = ca_array.pick_random().get_slice(":", 0)
-	
-	var cn_file = FileAccess.open("res://lists/c_nouns.txt", FileAccess.READ)
-	var cn_array = Array(cn_file.get_as_text().split("\n"))
-	cn_array = cn_array.filter(func(line): return "BASE" in line || name_tags.any(func(tag): return tag in line))
-	var noun = cn_array.pick_random().get_slice(":", 0)
+	var adjective = Util.random_tagged_line_from_file("res://lists/c_adjectives.txt", name_tags)
+	var noun = Util.random_tagged_line_from_file("res://lists/c_nouns.txt", name_tags)
 	
 	return "%s %s" % [adjective, noun]
 

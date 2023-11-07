@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cvqqocb22mk57"]
+[gd_scene load_steps=26 format=3 uid="uid://cvqqocb22mk57"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ddl3x"]
 [ext_resource type="Script" path="res://scripts/league.gd" id="2_niq30"]
@@ -7,6 +7,24 @@
 [ext_resource type="PackedScene" uid="uid://dcso0bkbjegca" path="res://scenes/player.tscn" id="5_dx6sa"]
 [ext_resource type="Script" path="res://scripts/environment.gd" id="6_o1w2o"]
 [ext_resource type="PackedScene" uid="uid://qtdnkidv8gx2" path="res://scenes/course_theme.tscn" id="7_ch1tn"]
+[ext_resource type="Script" path="res://scripts/onceler.gd" id="8_ri3nq"]
+[ext_resource type="Script" path="res://scripts/global_events.gd" id="9_1bvn0"]
+[ext_resource type="Script" path="res://scripts/events/event_start_create_players.gd" id="10_53hkq"]
+[ext_resource type="Script" path="res://scripts/local_events.gd" id="10_svquh"]
+[ext_resource type="Script" path="res://scripts/events/event_create_player.gd" id="11_pa0fd"]
+[ext_resource type="Script" path="res://scripts/events/event_tourney_start.gd" id="12_n53fw"]
+[ext_resource type="Script" path="res://scripts/events/event_courses_start.gd" id="13_gp5bg"]
+[ext_resource type="Script" path="res://scripts/events/event_player_turn.gd" id="14_43iia"]
+[ext_resource type="Script" path="res://scripts/events/event_tourney_finish.gd" id="14_208so"]
+[ext_resource type="Script" path="res://scripts/util.gd" id="14_asftd"]
+[ext_resource type="Script" path="res://scripts/events/event_course_start.gd" id="15_6gqug"]
+[ext_resource type="Script" path="res://scripts/events/event_weather_report.gd" id="16_tjvj7"]
+[ext_resource type="Script" path="res://scripts/events/event_hole_start.gd" id="17_wr1ct"]
+[ext_resource type="Script" path="res://scripts/events/event_wildlife_report.gd" id="18_w6cr0"]
+[ext_resource type="Script" path="res://scripts/events/event_up_top.gd" id="19_5rkoy"]
+[ext_resource type="Script" path="res://scripts/events/event_hole_finish.gd" id="21_w5oxw"]
+[ext_resource type="Script" path="res://scripts/events/event_course_finish.gd" id="22_i0h62"]
+[ext_resource type="Script" path="res://scripts/events/event_player_turn_result.gd" id="22_utpkt"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ddl3x")
@@ -30,3 +48,64 @@ script = ExtResource("6_o1w2o")
 [node name="Wet \'n\' Wild World" parent="League/Environment" instance=ExtResource("7_ch1tn")]
 quench = 150
 name_tags = ["WET"]
+
+[node name="Onceler" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_ri3nq")
+
+[node name="Global Events" type="Node" parent="Onceler"]
+script = ExtResource("9_1bvn0")
+
+[node name="Start Create Players" type="Node" parent="Onceler/Global Events"]
+script = ExtResource("10_53hkq")
+
+[node name="Create Player" type="Node" parent="Onceler/Global Events"]
+script = ExtResource("11_pa0fd")
+
+[node name="Tourney Start" type="Node" parent="Onceler/Global Events"]
+script = ExtResource("12_n53fw")
+
+[node name="Next Round" type="Node" parent="Onceler/Global Events"]
+script = ExtResource("13_gp5bg")
+
+[node name="Tourney Finish" type="Node" parent="Onceler/Global Events"]
+script = ExtResource("14_208so")
+
+[node name="Local Events" type="Node" parent="Onceler"]
+script = ExtResource("10_svquh")
+
+[node name="Course Start" type="Node" parent="Onceler/Local Events"]
+script = ExtResource("15_6gqug")
+
+[node name="Weather Report" type="Node" parent="Onceler/Local Events"]
+script = ExtResource("16_tjvj7")
+
+[node name="Hole Start" type="Node" parent="Onceler/Local Events"]
+script = ExtResource("17_wr1ct")
+
+[node name="Wildlife Report" type="Node" parent="Onceler/Local Events"]
+script = ExtResource("18_w6cr0")
+
+[node name="Up Top" type="Node" parent="Onceler/Local Events"]
+script = ExtResource("19_5rkoy")
+
+[node name="Player Turn" type="Node" parent="Onceler/Local Events"]
+script = ExtResource("14_43iia")
+
+[node name="Player Turn Result" type="Node" parent="Onceler/Local Events"]
+script = ExtResource("22_utpkt")
+
+[node name="Hole Finish" type="Node" parent="Onceler/Local Events"]
+script = ExtResource("21_w5oxw")
+
+[node name="Course Finish" type="Node" parent="Onceler/Local Events"]
+script = ExtResource("22_i0h62")
+
+[node name="Event Timer" type="Timer" parent="Onceler"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Util" type="Node" parent="."]
+script = ExtResource("14_asftd")
+
+[connection signal="timeout" from="Onceler/Event Timer" to="Onceler" method="trigger_next_event"]
