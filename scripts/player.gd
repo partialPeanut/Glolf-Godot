@@ -26,22 +26,22 @@ func init_new(_id):
 	id = _id
 	
 	var fn_file = FileAccess.open("res://lists/p_namesfirst.txt", FileAccess.READ)
-	var fn_array = fn_file.get_as_text().split("\n")
-	first_name = fn_array.pick_random()
+	var fn_array = Array(fn_file.get_as_text().split("\n"))
+	first_name = fn_array.pick_random().strip_escapes()
 	
 	var ln_file = FileAccess.open("res://lists/p_nameslast.txt", FileAccess.READ)
-	var ln_array = ln_file.get_as_text().split("\n")
-	last_name = ln_array.pick_random()
+	var ln_array = Array(ln_file.get_as_text().split("\n"))
+	last_name = ln_array.pick_random().strip_escapes()
 	
 	suffixes = []
 	
 	var g_file = FileAccess.open("res://lists/p_genders.txt", FileAccess.READ)
-	var g_array = g_file.get_as_text().split("\n")
-	gender = g_array.pick_random()
+	var g_array = Array(g_file.get_as_text().split("\n"))
+	gender = g_array.pick_random().strip_escapes()
 	
 	var tax_bracket = randi() % 100
-	net_worth = randi_range(-60000, 60000) if tax_bracket < 70 else randi_range(40000, 300000) if tax_bracket < 99 else randi_range(300000, 600000)
-	blahaj_owned = randf_range(-20, 100) if randi() % 666 != 0 else 999999999999999999999999999999999999999999999
+	net_worth = randi_range(-60000, 60000) if tax_bracket < 70 else (randi_range(40000, 300000) if tax_bracket < 99 else randi_range(300000, 600000))
+	blahaj_owned = randf_range(-20, 100) if randi() % 666 != 0 else 999999999.999999999
 		
 	mortality = "ALIVE" if randf() < 0.9 else "DEAD"
 	
@@ -60,6 +60,27 @@ func init_new(_id):
 
 func full_name():
 	var _full_name = "%s %s" % [first_name, last_name]
-	for suffix in suffixes:
-		_full_name += " %s" % suffix
+	if !suffixes.is_empty():
+		_full_name += " " + " ".join(suffixes)
 	return _full_name
+
+func stat_readout():
+	var space_amt = 9
+	var stats = "Name: %*s"           % [ space_amt + 8, full_name() ]
+	stats +=  "\nGender: %*s"         % [ space_amt + 6, gender ]
+	stats +=  "\nMortality: %*s"      % [ space_amt + 3, mortality ]
+	stats +=  "\n"
+	stats +=  "\nNet Worth: %*d"      % [ space_amt + 3, net_worth ]
+	stats +=  "\nBlahaj Owned: %*f"   % [ space_amt + 0, blahaj_owned ]
+	stats +=  "\n"
+	stats +=  "\nCompetence: %*.1f"   % [ space_amt + 2, competence ]
+	stats +=  "\nSmartassery: %*.1f"  % [ space_amt + 1, smartassery ]
+	stats +=  "\nYeetness: %*.1f"     % [ space_amt + 4, yeetness ]
+	stats +=  "\nTrigonometry: %*.1f" % [ space_amt + 0, trigonometry ]
+	stats +=  "\nTopology: %*.1f"     % [ space_amt + 4, topology ]
+	stats +=  "\nBisexuality: %*.1f"  % [ space_amt + 1, bisexuality ]
+	stats +=  "\nAsexuality: %*.1f"   % [ space_amt + 2, asexuality ]
+	stats +=  "\nScrappiness: %*.1f"  % [ space_amt + 1, scrappiness ]
+	stats +=  "\nCharisma: %*.1f"     % [ space_amt + 4, charisma ]
+	stats +=  "\nAutism: %*.1f"       % [ space_amt + 6, autism ]
+	return stats

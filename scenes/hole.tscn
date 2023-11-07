@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://0r12xmr2itry"]
+
+[ext_resource type="Script" path="res://scripts/hole.gd" id="1_1ray2"]
+
+[node name="Hole" type="Node"]
+script = ExtResource("1_1ray2")

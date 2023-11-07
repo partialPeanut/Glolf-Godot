@@ -1,0 +1,8 @@
+Green: BASE
+Holes: BASE
+Hills: BASE
+Marsh: WET
+Pools: WET
+Ocean: WET
+Dunes: DRY
+Lands: BASE

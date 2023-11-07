@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://qtdnkidv8gx2"]
+
+[ext_resource type="Script" path="res://scripts/course_theme.gd" id="1_yocql"]
+[ext_resource type="PackedScene" uid="uid://0r12xmr2itry" path="res://scenes/hole.tscn" id="2_7n34s"]
+
+[node name="Course Theme" type="Node"]
+script = ExtResource("1_yocql")
+hole_scene = ExtResource("2_7n34s")

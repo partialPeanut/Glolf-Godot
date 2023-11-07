@@ -130,7 +130,7 @@ Fork
 Cargo
 Xerxes
 Red
-\"Hot Dog\"
+"Hot Dog"
 Canigeta
 Canta
 Lup
@@ -572,3 +572,5 @@ Almond
 Pendleton
 Taxon
 Coyote
+Kohji
+Trixie
