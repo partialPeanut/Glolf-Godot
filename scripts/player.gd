@@ -29,12 +29,11 @@ func init_new(_id):
 	last_name = Util.random_line_from_file("res://lists/p_nameslast.txt")
 	suffixes = []
 	gender = Util.random_line_from_file("res://lists/p_genders.txt")
+	mortality = "ALIVE" if randi() % 100 != 0 else "DEAD"
 	
 	var tax_bracket = randi() % 100
 	net_worth = randi_range(-60000, 60000) if tax_bracket < 70 else (randi_range(40000, 300000) if tax_bracket < 99 else randi_range(300000, 600000))
 	blahaj_owned = randf_range(-20, 100) if randi() % 666 != 0 else 999999999.999999999
-		
-	mortality = "ALIVE" if randi() % 100 != 0 else "DEAD"
 	
 	competence = randfn(6,2)
 	smartassery = randfn(6,2)

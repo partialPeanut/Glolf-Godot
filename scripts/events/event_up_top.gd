@@ -9,7 +9,7 @@ func _init(_course_node:Node):
 func do_event():
 	course_node.player_num = course_node.find_unsunk_player_after(-1)
 	
-	event_text_vars = [course_node.players.filter(func(p): return !course_node.player_info[p].sunk).size()]
+	event_text_vars = [course_node.all_unsunk_players().size()]
 	
 	queue_event(EventPlayerTurn.new(course_node))
 	print(as_text())

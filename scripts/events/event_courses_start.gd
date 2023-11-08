@@ -7,6 +7,7 @@ func _init():
 
 func do_event():
 	var tourney = main_node.get_node("%League/Tourney")
+	tourney.round_num += 1
 	tourney.initialize_courses(tourney.round_num)
 	
 	for c in tourney.courses:

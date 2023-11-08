@@ -7,8 +7,8 @@ func _init(_course_node:Node):
 	event_text_vars = []
 
 func do_event():
-	var current_player = course_node.players[course_node.player_num]
-	if randi() % 3 == 0:
+	var current_player = course_node.active_players[course_node.player_num]
+	if randi() % 2 == 0:
 		course_node.player_info[current_player].sunk = true
 		event_text = "They nailed it!!"
 	

@@ -19,3 +19,6 @@ func new_tourney():
 
 func choose_players_for_tourney():
 	return $Roster.random_players_for_tourney(players_per_tourney)
+
+func kill_players(_player):
+	pass

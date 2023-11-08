@@ -8,6 +8,5 @@ func _init(_course_node:Node):
 
 func do_event():
 	queue_event(EventHoleStart.new(course_node))
-	
 	print(as_text())
 	is_done(self)

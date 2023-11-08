@@ -7,6 +7,8 @@ func _init(_course_node:Node):
 	event_text_vars = ["GRAY", "Green Greens"]
 
 func do_event():
+	course_node.start_course()
+	
 	event_text_vars = ["GRAY", course_node.course_name]
 	
 	queue_event(EventWeatherReport.new(course_node))
