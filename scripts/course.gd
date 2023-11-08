@@ -1,24 +1,34 @@
 extends Node
+class_name Course
 
-var course_theme: Node
-var course_name: String
-var random_event_tags: Array
+var tourney: Tourney
 
-var all_players: Array
-var active_players: Array
-var player_num = 0
-var player_info: Dictionary
+@export var course_theme: Node
+@export var course_name: String
+@export var random_event_tags: Array
 
-var holes: Array
-var hole_num = 0
+@export var mods: Array
+
+@export var all_players: Array
+@export var active_players: Array
+@export var player_num = 0
+@export var player_info: Dictionary
+
+@export var holes: Array
+@export var hole_num = 0
+
 var end_of_hole = false
 var end_of_course = false
 var sudden_death = false
 
-func init_new(_all_players, _num_holes = 9):
+func init_new(_tourney, _all_players, _num_holes = 9):
+	tourney = _tourney
+	
 	course_theme = get_node("/root/Main/%Environment").get_random_course_theme()
 	course_name = course_theme.generate_course_name()
 	random_event_tags = course_theme.random_event_tags
+	
+	mods = []
 	
 	all_players = _all_players.duplicate()
 	player_info.clear()
@@ -35,8 +45,14 @@ func init_new(_all_players, _num_holes = 9):
 
 func append_new_hole():
 	var hole = course_theme.generate_hole()
-	holes.append(hole)
 	hole.name = "Hole Number %d" % holes.size()
+	hole.course = self
+	
+	var mods = Mod.mods_of(self)
+	for mod in mods:
+		mod.on_hole_create(null, hole)
+	
+	holes.append(hole)
 	add_child(hole)
 
 func start_course():
@@ -75,6 +91,9 @@ func finish_course():
 	end_of_hole = false
 	end_of_course = true
 	get_parent().on_course_complete()
+
+func get_current_player():
+	return active_players[player_num]
 
 func get_winners(exclude:Array = []):
 	var eligible_players = active_players.filter(func(p): return !p in exclude)

@@ -11,6 +11,10 @@ func do_event():
 	
 	event_text_vars = [course_node.all_unsunk_players().size()]
 	
+	var mods = Mod.mods_of(course_node)
+	for mod in mods:
+		mod.on_up_top(self)
+	
 	queue_event(EventPlayerTurn.new(course_node))
 	print(as_text())
 	is_done(self)

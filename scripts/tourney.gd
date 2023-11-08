@@ -1,25 +1,35 @@
 extends Node
+class_name Tourney
+
+var league: League
 
 @export var course_scene: PackedScene
 
-var tourney_name: String
-var sin_reward: int
-var sudden_death_at_round: int
+@export var tourney_name: String
+@export var sin_reward: int
 
-var all_players: Array
+var mods: Array
+
+@export var all_players: Array
 var remaining_players: Array
 var killed_in_action = []
 var round_winners = []
 var winners: Array
 
-var courses_per_round: Array
+@export var courses_per_round: Array
+@export var sudden_death_at_round: int
+
 var courses: Array
 var round_num = -1
 
 func init_new(_players: Array, _courses_per_round = [4, 1], _sudden_death = 1):
+	league = get_node("/root/Main/%League")
+	
 	tourney_name = generate_tourney_name()
 	sudden_death_at_round = _sudden_death
 	sin_reward = randi_range(100000, 200000)
+	
+	mods = []
 	
 	all_players = _players.duplicate()
 	remaining_players = _players.duplicate()
@@ -44,6 +54,11 @@ func initialize_courses(rn):
 	courses.clear()
 	for i in num_courses:
 		var course = course_scene.instantiate()
+		
+		var mods = Mod.mods_of(self)
+		for mod in mods:
+			mod.on_course_create(null, course)
+		
 		courses.append(course)
 		add_child(course)
 		
@@ -51,7 +66,7 @@ func initialize_courses(rn):
 		var course_players = unpicked_players.slice(0, num_players)
 		unpicked_players = unpicked_players.filter(func(p): return !p in course_players)
 		
-		course.init_new(course_players)
+		course.init_new(self, course_players)
 		course.name = course.course_name
 
 func in_sudden_death():
@@ -74,10 +89,13 @@ func on_course_complete():
 		else:
 			get_node("/root/Main/%Onceler").queue_event(EventTourneyFinish.new())
 
-func get_info(p):
+func get_course_of(p: Player):
 	for c in courses:
 		if p in c.all_players:
-			return c.player_info[p]
+			return c
+
+func get_info(p):
+	return get_course_of(p).player_info[p]
 
 func get_winners():
 	var w = []

@@ -1,4 +1,5 @@
 extends Node
+class_name Player
 
 @export var id: int
 
@@ -6,6 +7,8 @@ extends Node
 @export var last_name: String
 @export var suffixes: PackedStringArray
 @export var gender: String
+
+@export var mods: Array
 
 @export var net_worth: int
 @export var blahaj_owned: float
@@ -30,6 +33,10 @@ func init_new(_id):
 	suffixes = []
 	gender = Util.random_line_from_file("res://lists/p_genders.txt")
 	mortality = "ALIVE" if randi() % 100 != 0 else "DEAD"
+	
+	mods = []
+	if randf() < 0.3:
+		mods.append(ModAggressive.new(self))
 	
 	var tax_bracket = randi() % 100
 	net_worth = randi_range(-60000, 60000) if tax_bracket < 70 else (randi_range(40000, 300000) if tax_bracket < 99 else randi_range(300000, 600000))

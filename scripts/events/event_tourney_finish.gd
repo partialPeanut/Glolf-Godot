@@ -13,5 +13,10 @@ func do_event():
 	tourney.winners = winners
 	
 	event_text_vars = [", ".join(winners.map(func(p): return p.full_name()))]
+	
+	var mods = Mod.mods_of(tourney)
+	for mod in mods:
+		mod.on_tourney_finish(self)
+	
 	print(as_text())
 	is_done(self)

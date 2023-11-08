@@ -8,5 +8,10 @@ func _init(_course_node:Node = null):
 
 func do_event():
 	course_node.finish_course()
+	
+	var mods = Mod.mods_of(course_node)
+	for mod in mods:
+		mod.on_course_finish(self)
+	
 	print(as_text())
 	is_done(self)

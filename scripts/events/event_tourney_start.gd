@@ -17,7 +17,10 @@ func do_event():
 		t.sin_reward
 	]
 	
-	queue_event(EventNextRound.new())
+	var mods = Mod.mods_of(t)
+	for mod in mods:
+		mod.on_tourney_start(self)
 	
+	queue_event(EventNextRound.new())
 	print(as_text())
 	is_done(self)

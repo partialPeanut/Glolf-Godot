@@ -14,6 +14,11 @@ func create_new_player():
 	var p = player_scene.instantiate()
 	p.init_new(new_id())
 	p.name = p.full_name()
+	
+	var mods = Mod.mods_of(get_node("/root/Main/%League"))
+	for mod in mods:
+		mod.on_create_player(null, p)
+	
 	all_players.append(p)
 	add_child(p)
 	return p

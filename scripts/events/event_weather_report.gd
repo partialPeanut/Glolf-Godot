@@ -7,6 +7,10 @@ func _init(_course_node:Node = null):
 	event_text_vars = ["Wasteland. Weather non-existent."]
 
 func do_event():
+	var mods = Mod.mods_of(course_node)
+	for mod in mods:
+		mod.on_weather_report(self)
+	
 	queue_event(EventHoleStart.new(course_node))
 	print(as_text())
 	is_done(self)

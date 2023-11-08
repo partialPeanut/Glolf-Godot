@@ -11,6 +11,10 @@ func do_event():
 	
 	event_text_vars = ["GRAY", course_node.course_name]
 	
+	var mods = Mod.mods_of(course_node)
+	for mod in mods:
+		mod.on_course_start(self)
+	
 	queue_event(EventWeatherReport.new(course_node))
 	print(as_text())
 	is_done(self)

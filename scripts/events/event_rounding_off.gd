@@ -18,6 +18,10 @@ func do_event():
 	
 	event_text_vars = [start_amt - tourney.remaining_players.size()]
 	
+	var mods = Mod.mods_of(tourney)
+	for mod in mods:
+		mod.on_the_culling(self)
+	
 	queue_event(EventNextRound.new())
 	print(as_text())
 	is_done(self)

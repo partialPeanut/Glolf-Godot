@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="Glolf Godot"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/display.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Utilities="*res://scenes/util.tscn"
+Main="*res://scenes/main.tscn"

@@ -8,10 +8,10 @@ func _init():
 func do_event():
 	var tourney = main_node.get_node("%League/Tourney")
 	var winners = tourney.get_winners()
-	
 	tourney.round_winners.append(winners)
 	
 	event_text_vars = [tourney.round_num+1, ", ".join(winners.map(func(p): return p.full_name()))]
+	
 	queue_event(EventRoundingOff.new())
 	print(as_text())
 	is_done(self)

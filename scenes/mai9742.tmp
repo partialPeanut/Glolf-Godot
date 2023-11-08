@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cvqqocb22mk57"]
+[gd_scene load_steps=31 format=3 uid="uid://cvqqocb22mk57"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ddl3x"]
 [ext_resource type="Script" path="res://scripts/league.gd" id="2_niq30"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://scripts/global_events.gd" id="9_1bvn0"]
 [ext_resource type="Script" path="res://scripts/mods/mod_aggressive.gd" id="9_15q00"]
 [ext_resource type="Script" path="res://scripts/events/event_start_create_players.gd" id="10_53hkq"]
-[ext_resource type="Script" path="res://scripts/mods/mod_overseen.gd" id="10_dfnm1"]
 [ext_resource type="Script" path="res://scripts/local_events.gd" id="10_svquh"]
 [ext_resource type="Script" path="res://scripts/events/event_create_player.gd" id="11_pa0fd"]
 [ext_resource type="Script" path="res://scripts/events/event_tourney_start.gd" id="12_n53fw"]
@@ -60,9 +59,6 @@ script = ExtResource("8_mjjkf")
 
 [node name="Aggressive" type="Node" parent="League/Mods"]
 script = ExtResource("9_15q00")
-
-[node name="Overseen" type="Node" parent="League/Mods"]
-script = ExtResource("10_dfnm1")
 
 [node name="Onceler" type="Node" parent="."]
 unique_name_in_owner = true
