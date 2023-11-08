@@ -1,7 +1,7 @@
 extends LocalEvent
 class_name EventUpTop
 
-func _init(_course_node:Node):
+func _init(_course_node:Node = null):
 	super(_course_node)
 	event_text = "The cycle begins anew. %d players are still swinging."
 	event_text_vars = [-1]

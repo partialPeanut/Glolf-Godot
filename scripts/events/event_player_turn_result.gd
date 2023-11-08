@@ -1,7 +1,7 @@
 extends LocalEvent
 class_name EventPlayerTurnResult
 
-func _init(_course_node:Node):
+func _init(_course_node:Node = null):
 	super(_course_node)
 	event_text = "No dice."
 	event_text_vars = []
@@ -18,8 +18,9 @@ func do_event():
 	elif next_player == -1:
 		queue_event(EventUpTop.new(course_node))
 	else:
-		course_node.player_num = next_player
 		queue_event(EventPlayerTurn.new(course_node))
+	
+	course_node.try_random_events()
 	
 	print(as_text())
 	is_done(self)

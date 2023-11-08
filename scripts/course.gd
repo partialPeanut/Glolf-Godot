@@ -2,6 +2,7 @@ extends Node
 
 var course_theme: Node
 var course_name: String
+var random_event_tags: Array
 
 var all_players: Array
 var active_players: Array
@@ -17,6 +18,7 @@ var sudden_death = false
 func init_new(_all_players, _num_holes = 9):
 	course_theme = get_node("/root/Main/%Environment").get_random_course_theme()
 	course_name = course_theme.generate_course_name()
+	random_event_tags = course_theme.random_event_tags
 	
 	all_players = _all_players.duplicate()
 	player_info.clear()
@@ -54,7 +56,10 @@ func start_hole(_sudden_death:bool = false):
 		player_info[p].strokes = 0
 		player_info[p].sunk = false
 	holes[hole_num].activate()
-	
+
+func try_random_events():
+	get_node("/root/Main/%Onceler").try_tagged_events(random_event_tags, self)
+
 func finish_hole():
 	end_of_hole = true
 	for p in active_players:

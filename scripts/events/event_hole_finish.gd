@@ -1,7 +1,7 @@
 extends LocalEvent
 class_name EventHoleFinish
 
-func _init(_course_node:Node):
+func _init(_course_node:Node = null):
 	super(_course_node)
 	event_text = "That was Hole Number %d."
 	event_text_vars = [-1]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cvqqocb22mk57"]
+[gd_scene load_steps=29 format=3 uid="uid://cvqqocb22mk57"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ddl3x"]
 [ext_resource type="Script" path="res://scripts/league.gd" id="2_niq30"]
@@ -26,6 +26,8 @@
 [ext_resource type="Script" path="res://scripts/events/event_hole_finish.gd" id="21_w5oxw"]
 [ext_resource type="Script" path="res://scripts/events/event_course_finish.gd" id="22_i0h62"]
 [ext_resource type="Script" path="res://scripts/events/event_player_turn_result.gd" id="22_utpkt"]
+[ext_resource type="Script" path="res://scripts/random_events.gd" id="27_0ho5f"]
+[ext_resource type="Script" path="res://scripts/events/random_events/random_event_bats.gd" id="28_cqwrg"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ddl3x")
@@ -107,6 +109,12 @@ script = ExtResource("21_w5oxw")
 
 [node name="Course Finish" type="Node" parent="Onceler/Local Events"]
 script = ExtResource("22_i0h62")
+
+[node name="Random Events" type="Node" parent="Onceler"]
+script = ExtResource("27_0ho5f")
+
+[node name="Bats" type="Node" parent="Onceler/Random Events"]
+script = ExtResource("28_cqwrg")
 
 [node name="Event Timer" type="Timer" parent="Onceler"]
 wait_time = 0.005

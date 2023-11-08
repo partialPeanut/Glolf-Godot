@@ -11,7 +11,7 @@ extends Node
 @export var quench = 100
 @export var thirst = 100
 
-@export var random_encounter_tags: Array
+@export var random_event_tags: Array
 @export var name_tags: Array
 
 func generate_course_name():

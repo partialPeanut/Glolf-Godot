@@ -3,7 +3,7 @@ class_name EventHoleStart
 
 var sudden_death: bool
 
-func _init(_course_node:Node, _sudden_death:bool = false):
+func _init(_course_node:Node = null, _sudden_death:bool = false):
 	super(_course_node)
 	sudden_death = _sudden_death
 	event_text = "Next up: Hole Number %d."
