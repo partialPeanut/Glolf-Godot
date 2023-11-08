@@ -11,5 +11,5 @@ func _init(_course_node:Node = null):
 	base_chance = -1
 	tags = ["BASE"]
 
-static func try_event():
-	return randf() < base_chance
+static func try_event(autism:float):
+	return randf() < base_chance * Util.curve_loggy(0.5, 1.5, autism)

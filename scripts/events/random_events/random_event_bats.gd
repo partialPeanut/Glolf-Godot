@@ -11,9 +11,6 @@ func _init(_course_node:Node = null):
 	event_text = "Bats flock ominously."
 	event_text_vars = []
 
-static func try_event():
-	return randf() < base_chance
-
 func do_event():
 	print(as_text())
 	is_done(self)

@@ -57,8 +57,8 @@ func start_hole(_sudden_death:bool = false):
 		player_info[p].sunk = false
 	holes[hole_num].activate()
 
-func try_random_events():
-	get_node("/root/Main/%Onceler").try_tagged_events(random_event_tags, self)
+func try_random_events(autism:float):
+	get_node("/root/Main/%Onceler").try_tagged_events(random_event_tags, self, autism)
 
 func finish_hole():
 	end_of_hole = true

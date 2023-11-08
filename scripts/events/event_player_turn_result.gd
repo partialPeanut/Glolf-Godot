@@ -20,7 +20,7 @@ func do_event():
 	else:
 		queue_event(EventPlayerTurn.new(course_node))
 	
-	course_node.try_random_events()
+	course_node.try_random_events(current_player.autism)
 	
 	print(as_text())
 	is_done(self)

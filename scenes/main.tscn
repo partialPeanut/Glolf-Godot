@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dcso0bkbjegca" path="res://scenes/player.tscn" id="5_dx6sa"]
 [ext_resource type="Script" path="res://scripts/environment.gd" id="6_o1w2o"]
 [ext_resource type="PackedScene" uid="uid://qtdnkidv8gx2" path="res://scenes/course_theme.tscn" id="7_ch1tn"]
+[ext_resource type="Script" path="res://scripts/mods.gd" id="8_mjjkf"]
 [ext_resource type="Script" path="res://scripts/onceler.gd" id="8_ri3nq"]
 [ext_resource type="Script" path="res://scripts/global_events.gd" id="9_1bvn0"]
 [ext_resource type="Script" path="res://scripts/events/event_start_create_players.gd" id="10_53hkq"]
@@ -21,7 +22,6 @@
 [ext_resource type="Script" path="res://scripts/events/event_rounding_off.gd" id="15_j8n7k"]
 [ext_resource type="Script" path="res://scripts/events/event_weather_report.gd" id="16_tjvj7"]
 [ext_resource type="Script" path="res://scripts/events/event_hole_start.gd" id="17_wr1ct"]
-[ext_resource type="Script" path="res://scripts/events/event_wildlife_report.gd" id="18_w6cr0"]
 [ext_resource type="Script" path="res://scripts/events/event_up_top.gd" id="19_5rkoy"]
 [ext_resource type="Script" path="res://scripts/events/event_hole_finish.gd" id="21_w5oxw"]
 [ext_resource type="Script" path="res://scripts/events/event_course_finish.gd" id="22_i0h62"]
@@ -51,6 +51,9 @@ script = ExtResource("6_o1w2o")
 [node name="Wet \'n\' Wild World" parent="League/Environment" instance=ExtResource("7_ch1tn")]
 quench = 150
 name_tags = ["WET"]
+
+[node name="Mods" type="Node" parent="League"]
+script = ExtResource("8_mjjkf")
 
 [node name="Onceler" type="Node" parent="."]
 unique_name_in_owner = true
@@ -91,9 +94,6 @@ script = ExtResource("16_tjvj7")
 
 [node name="Hole Start" type="Node" parent="Onceler/Local Events"]
 script = ExtResource("17_wr1ct")
-
-[node name="Wildlife Report" type="Node" parent="Onceler/Local Events"]
-script = ExtResource("18_w6cr0")
 
 [node name="Up Top" type="Node" parent="Onceler/Local Events"]
 script = ExtResource("19_5rkoy")
