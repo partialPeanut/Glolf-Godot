@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnayyn85cttim"]
+
+[ext_resource type="Script" path="res://scripts/calc.gd" id="1_vrs5g"]
+
+[node name="Calc" type="Node"]
+script = ExtResource("1_vrs5g")

@@ -4,8 +4,8 @@ class_name Mod
 static var league: League
 static var onceler: Onceler
 
-var mod_class = Mod
-var tags = []
+static var mod_class = Mod
+static var tags = []
 
 var source: Node
 
@@ -16,6 +16,16 @@ func _init(_source:Node = null):
 func _ready():
 	if league == null: league = Main.get_node("%League")
 	if onceler == null: onceler = Main.get_node("%Onceler")
+
+static func apply(x:Node, _e:GlobalEvent = null):
+	var m = mod_class.new(x)
+	x.mods.append(m)
+	m.on_apply(_e)
+
+static func remove(m:Mod, _e:GlobalEvent = null):
+	m.on_remove(_e)
+	m.source.mods.erase(m)
+	m.queue_free()
 
 static func mod_list():
 	return league.get_node("Mods").get_children().map(func(c): return c.mod_class)
@@ -52,6 +62,9 @@ func before_event(_e:GlobalEvent = null):
 	pass
 
 func on_player_created(_e:GlobalEvent = null, _player:Player = null):
+	pass
+
+func on_player_killed(_e:GlobalEvent = null, _player:Player = null):
 	pass
 
 func on_tourney_created(_e:GlobalEvent = null, _tourney:Tourney = null):

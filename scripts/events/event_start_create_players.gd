@@ -13,5 +13,5 @@ func do_event():
 	for i in num_players:
 		queue_event_immediately(EventCreatePlayer.new())
 	
-	print(as_text())
+	display()
 	is_done(self)

@@ -18,5 +18,5 @@ func do_event():
 	
 	for c in tourney.courses:
 		queue_event_immediately(EventCourseStart.new(c))
-	print(as_text())
+	display()
 	is_done(self)

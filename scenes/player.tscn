@@ -5,25 +5,6 @@
 
 [node name="Player" type="Node"]
 script = ExtResource("1_t6vtm")
-id = null
-first_name = null
-last_name = null
-suffixes = null
-gender = null
-mods = null
-net_worth = null
-blahaj_owned = null
-mortality = null
-competence = null
-smartassery = null
-yeetness = null
-trigonometry = null
-topology = null
-bisexuality = null
-asexuality = null
-scrappiness = null
-charisma = null
-autism = null
 
 [node name="Ball" type="Node" parent="."]
 script = ExtResource("2_ukxwn")

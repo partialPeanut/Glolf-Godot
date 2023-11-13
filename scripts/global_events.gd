@@ -13,7 +13,10 @@ func _ready():
 
 func do_event():
 	is_done(self)
-	
+
+func display():
+	print(as_text())
+
 func as_text():
 	return event_text % event_text_vars
 

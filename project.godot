@@ -19,3 +19,4 @@ config/icon="res://icon.svg"
 
 Utilities="*res://scenes/util.tscn"
 Main="*res://scenes/main.tscn"
+Calculations="*res://scenes/calc.tscn"

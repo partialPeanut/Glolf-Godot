@@ -18,5 +18,5 @@ func do_event():
 		mod.on_player_turn_start(self, current_player)
 	
 	queue_event_immediately(EventPlayerTurnResult.new(course_node))
-	print(as_text())
+	display()
 	is_done(self)

@@ -13,5 +13,5 @@ func do_event():
 	for mod in mods:
 		mod.on_course_finish(self)
 	
-	print(as_text())
+	display()
 	is_done(self)

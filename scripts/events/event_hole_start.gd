@@ -19,5 +19,5 @@ func do_event():
 		mod.on_hole_start(self)
 	
 	queue_event(EventUpTop.new(course_node))
-	print(as_text())
+	display()
 	is_done(self)

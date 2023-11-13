@@ -36,7 +36,9 @@ func init_new(_id):
 	
 	mods = []
 	if randf() < 0.3:
-		mods.append(ModAggressive.new(self))
+		ModAggressive.apply(self)
+	if randf() < 0.1:
+		ModDrowning.apply(self)
 	
 	var tax_bracket = randi() % 100
 	net_worth = randi_range(-60000, 60000) if tax_bracket < 70 else (randi_range(40000, 300000) if tax_bracket < 99 else randi_range(300000, 600000))

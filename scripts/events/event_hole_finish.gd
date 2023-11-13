@@ -14,5 +14,5 @@ func do_event():
 	for mod in mods:
 		mod.on_hole_finish(self)
 	
-	print(as_text())
+	display()
 	is_done(self)

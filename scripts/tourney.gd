@@ -8,7 +8,7 @@ var league: League
 @export var tourney_name: String
 @export var sin_reward: int
 
-var mods: Array
+var mods = []
 
 @export var all_players: Array
 var remaining_players: Array
@@ -23,8 +23,6 @@ var courses: Array
 var round_num = -1
 
 func init_new(_players: Array, _courses_per_round = [4, 1], _sudden_death = 1):
-	league = get_node("/root/Main/%League")
-	
 	tourney_name = generate_tourney_name()
 	sudden_death_at_round = _sudden_death
 	sin_reward = randi_range(100000, 200000)
@@ -55,9 +53,9 @@ func initialize_courses(rn):
 	for i in num_courses:
 		var course = course_scene.instantiate()
 		
-		var mods = Mod.mods_of(self)
-		for mod in mods:
-			mod.on_course_create(null, course)
+		var _mods = Mod.mods_of(self)
+		for _mod in _mods:
+			_mod.on_course_create(null, course)
 		
 		courses.append(course)
 		add_child(course)
@@ -68,6 +66,20 @@ func initialize_courses(rn):
 		
 		course.init_new(self, course_players)
 		course.name = course.course_name
+
+func remove_player(p):
+	if p not in all_players: return false
+	
+	all_players.erase(p)
+	remaining_players.erase(p)
+	for c in courses:
+		if p not in c.all_players: break
+		if p in c.active_players && c.active_players.find(p) <= c.player_num: c.player_num -= 1
+		
+		c.all_players.erase(p)
+		c.active_players.erase(p)
+	
+	return true
 
 func in_sudden_death():
 	return sudden_death_at_round != -1 && round_num >= sudden_death_at_round

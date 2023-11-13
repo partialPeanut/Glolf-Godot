@@ -13,5 +13,5 @@ func do_event():
 	event_text_vars = [tourney.round_num+1, ", ".join(winners.map(func(p): return p.full_name()))]
 	
 	queue_event(EventRoundingOff.new())
-	print(as_text())
+	display()
 	is_done(self)

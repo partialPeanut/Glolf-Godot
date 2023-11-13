@@ -48,9 +48,9 @@ func append_new_hole():
 	hole.name = "Hole Number %d" % holes.size()
 	hole.course = self
 	
-	var mods = Mod.mods_of(self)
-	for mod in mods:
-		mod.on_hole_create(null, hole)
+	var _mods = Mod.mods_of(self)
+	for _mod in _mods:
+		_mod.on_hole_create(null, hole)
 	
 	holes.append(hole)
 	add_child(hole)

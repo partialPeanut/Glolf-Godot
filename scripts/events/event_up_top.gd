@@ -16,5 +16,5 @@ func do_event():
 		mod.on_up_top(self)
 	
 	queue_event(EventPlayerTurn.new(course_node))
-	print(as_text())
+	display()
 	is_done(self)

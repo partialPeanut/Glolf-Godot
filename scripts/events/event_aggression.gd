@@ -12,5 +12,5 @@ func _init(_course_node:Node = null, _attacker:Player = null):
 
 func do_event():
 	event_text_vars = [attacker.full_name()]
-	print(as_text())
+	display()
 	is_done(self)

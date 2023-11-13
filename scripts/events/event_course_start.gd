@@ -16,5 +16,5 @@ func do_event():
 		mod.on_course_start(self)
 	
 	queue_event(EventWeatherReport.new(course_node))
-	print(as_text())
+	display()
 	is_done(self)

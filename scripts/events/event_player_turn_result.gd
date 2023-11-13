@@ -8,12 +8,12 @@ func _init(_course_node:Node = null):
 
 func do_event():
 	var current_player = course_node.active_players[course_node.player_num]
-	var mods = Mod.mods_of(current_player)
 	
 	if randi() % 2 == 0:
 		course_node.player_info[current_player].sunk = true
 		event_text = "They nailed it!!"
 		
+		var mods = Mod.mods_of(current_player)
 		for mod in mods:
 			mod.on_sink(self, current_player)
 	
@@ -25,10 +25,11 @@ func do_event():
 	else:
 		queue_event(EventPlayerTurn.new(course_node))
 	
+	var mods = Mod.mods_of(current_player)
 	for mod in mods:
 		mod.on_player_turn_result(self, current_player)
 	
 	course_node.try_random_events(current_player.autism)
 	
-	print(as_text())
+	display()
 	is_done(self)

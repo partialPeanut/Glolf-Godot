@@ -9,5 +9,5 @@ func do_event():
 	var p = main_node.get_node("%Roster").create_new_player()
 	event_text_vars = [p.full_name()]
 	
-	print(as_text())
+	display()
 	is_done(self)

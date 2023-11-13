@@ -22,5 +22,5 @@ func do_event():
 		mod.on_tourney_start(self)
 	
 	queue_event(EventNextRound.new())
-	print(as_text())
+	display()
 	is_done(self)
