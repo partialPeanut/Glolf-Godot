@@ -23,6 +23,9 @@ func on_apply(_e = null):
 	source.topology -= 1.5
 
 func on_remove(_e = null):
+	if source == null:
+		return
+	
 	if _e != null:
 		_e.event_text += " %s sinks and breathes freely!"
 		_e.event_text_vars += [source.full_name()]

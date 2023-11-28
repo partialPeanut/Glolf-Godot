@@ -24,7 +24,8 @@ static func apply(x:Node, _e:GlobalEvent = null):
 
 static func remove(m:Mod, _e:GlobalEvent = null):
 	m.on_remove(_e)
-	m.source.mods.erase(m)
+	if m.source != null:
+		m.source.mods.erase(m)
 	m.queue_free()
 
 static func mod_list():
